@@ -15,7 +15,7 @@ def nosotros(request):
 def galeria(request):
     return render(request,'galeria.html')
 
-def registrar(request):
+def form(request):
     data ={
         'form' : SignUpForm()
     }
@@ -34,5 +34,5 @@ def registrar(request):
         data["form"] = formulario
     return render(request, 'form.html',data)
 
-def form(request):
-    return render(request,'form.html')
+def login(request):
+    return render(request,'login.html')
