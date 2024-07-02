@@ -1,0 +1,24 @@
+{% load static %}
+<header class="header">
+    <div class="menu container">
+        <img class="menu-logo" src="{% static 'img/imagenlogo.png' %}" alt="menu logo">
+        <input type="checkbox" id="menu">
+        <label for="menu">
+            <img src="{% static 'img/menu.png' %}" class="menu-icono" alt="">
+        </label>
+        <nav class="navbar">
+            <ul>
+                {% url 'index' as index_url %}
+                <li><a class="nav-link {% if request.path == index_url %}active{% endif %}"
+                    href="{{ index_url }}">Inicio</a></li>
+                {% url 'nosotros' as nosotros_url %}
+                <li><a class="nav-link {% if request.path == nosotros_url %}active{% endif %}"
+                    href="{{ nosotros_url }}">Nosotros</a></li>
+                {% url 'galeria' as galeria_url %}
+                <li><a class="nav-link {% if request.path == nosotros_url %}active{% endif %}"
+                    href="{{galeria_url}}">Galeria</a></li>
+                <li><a href="#">Login in</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
