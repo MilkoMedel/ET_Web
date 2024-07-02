@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login in</title>
+
+    <link rel="stylesheet" href="{% static 'CSS/styles_login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <!-- este scrip me permite utilizar los metodos de jquery para validar -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- este link me permite implementar boostrap para los colores para validar los campos -->
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+<body>
+    <form class="form-box" method="post">
+        {% csrf_token %}
+        <h1>Login</h1>
+        <div class="input-box">
+            
+            <i class="fa-solid fa-user"></i>
+            <span class="error-message" id="user-error"></span>
+            <input type="text" id="user" placeholder="Username" >
+            
+        </div>
+        <div class="input-box">
+            
+            <i class="fa-solid fa-envelope"></i>
+            <span class="error-message" id="email-error"></span>
+            <input type="email" id="email" placeholder="Email" >
+            
+        </div>
+        <div class="input-box">
+            
+            <i class="fa-solid fa-key"></i>
+            <span class="error-message" id="password-error"></span>
+            <input type="password" id="password" placeholder="Password" >
+            
+        </div>
+        <div class="input-box">
+            
+            <i class="fa-solid fa-key"></i>
+            <span class="error-message" id="confirm-password-error"></span>
+            <input type="password" id="confirm-password" placeholder="Confirm password" >
+            <span class="eye" onclick="validationEye(this)">
+                <i id="hide1" class="fa-solid fa-eye"></i>
+                <i id="hide2" class="fa-solid fa-eye-slash"></i>
+            </span>
+        </div>
+        <div class="button">
+            <input type="submit" value="Sign in">
+        </div>
+        <div id="detail">
+            <p id="registro">Desea registrarse? 
+                {% url 'form' as form_url %}
+                <a class="nav-link {% if request.path == form_url %}active{% endif %}"
+                href="{{form_url}}">Registrarse</a>
+            </p>
+            <p id="index">Ingresar sin registrarse 
+                {% url 'index' as index_url %}
+                <a class="nav-link {% if request.path == index_url %}active{% endif %}"
+                href="{{index_url}}">Inicio</a>
+            </p>
+        </div>
+    </form>
+    <script src="{% static 'JS/eye.js' %}"></script>
+</body>
+</html>
