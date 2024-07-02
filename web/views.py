@@ -16,23 +16,30 @@ def galeria(request):
     return render(request,'galeria.html')
 
 def form(request):
-    data ={
-        'form' : SignUpForm()
+    data = {
+        'form': SignUpForm()
     }
-    if request.method=="POST":
-        formulario= SignUpForm(data=request.POST)
+    if request.method == "POST":
+        formulario = SignUpForm(data=request.POST)
         if formulario.is_valid():
-            user        = formulario.save()
-            genero      = formulario.cleaned_data.get('genero')
-            fecha_nac   = formulario.cleaned_data.get('fecha_nac')
-            cel         = formulario.cleaned_data.get('cel')  
+            user = formulario.save()
+            genero = formulario.cleaned_data.get('genero')
+            fecha_nac = formulario.cleaned_data.get('fecha_nac')
+            cel = formulario.cleaned_data.get('cel')
             Registro_cliente.objects.create(user=user, id_genero=genero, fecha_nac=fecha_nac, cel=cel)
-            user=authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
-            login(request, user)
-            messages.success(request, "Te has registrado correctamente")
-            return redirect('index')
+            
+            # Authenticate and log in the user
+            username = formulario.cleaned_data.get('username')
+            password = formulario.cleaned_data.get('password1')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, "Te has registrado correctamente")
+                return redirect('index')
+            else:
+                messages.error(request, "Hubo un problema con la autenticación")
+        
         data["form"] = formulario
-    return render(request, 'form.html',data)
+    
+    return render(request, 'form.html', data)
 
-def login(request):
-    return render(request,'login.html')
