@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from web.forms import SignUpForm
@@ -11,9 +12,11 @@ from web.models import Registro_cliente
 def index(request):
     return render(request, 'index.html')
 
+@login_required
 def nosotros(request):
     return render(request,'nosotros.html')
 
+@login_required
 def galeria(request):
     return render(request,'galeria.html')
 
