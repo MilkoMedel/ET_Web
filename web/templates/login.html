@@ -22,7 +22,9 @@
                         <form action="#" method="post">
                             {% csrf_token %}
                             {{ form | crispy }}
-                            <p>No tienes cuenta? <a href="{% url 'form' %}" style="color: #F44A36; font-size: medium;">Click aquí</a></p>
+                            {% url 'form' as form_url %}
+                            <p>No tienes cuenta? <a class="nav-link {% if request.path == form_url %}active{% endif %}"
+                                href="{{form_url}}" style="color: #F44A36; font-size: medium;">Click aquí</a></p>
                             <input type="submit" value="Ingresar" class="btn btn-success" style="float:right;">
                             <hr class="separador1">
                         </form>

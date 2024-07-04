@@ -43,3 +43,6 @@ def form(request):
     
     return render(request, 'form.html', data)
 
+def login(request):
+    
+    return render(request,'login.html')
