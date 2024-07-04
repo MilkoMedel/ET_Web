@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse
 from web.forms import SignUpForm
 from web.models import Registro_cliente
 
@@ -43,6 +45,20 @@ def form(request):
     
     return render(request, 'form.html', data)
 
-def login(request):
-    
-    return render(request,'login.html')
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')  # Redirect to a home page or any other page
+            else:
+                return HttpResponse("Invalid login")
+        else:
+            return HttpResponse("Invalid form")
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
