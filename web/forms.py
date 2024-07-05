@@ -14,7 +14,7 @@ class SignUpForm(UserCreationForm):
                 'password2', 
                 'email', 
                 'genero', 
-                'fecha_nac',
+                'fecha_nac', 
                 'cel']
     pass
 
@@ -29,20 +29,20 @@ class ProductosForm(forms.ModelForm):
                 'imagen',
                 'categoria']
         labels ={
-            'id_producto' : 'ID',
-            'nombre' : 'Nombre',
-            'description': 'Descripción',
-            'precio': 'Precio',
-            'stock': 'Stock',
-            'imagen': 'Imagen',
-            'categoria':'Categoria',
+            'id_producto' : 'ID', 
+            'nombre' : 'Nombre', 
+            'description': 'Descripción', 
+            'precio': 'Precio', 
+            'stock': 'Stock', 
+            'imagen': 'Imagen', 
+            'categoria':'Categoria', 
         }
         widgets = {
             'id_producto': forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese id...',
-                    'id': 'id',
-                    'class': 'form-control',
+                    'placeholder': 'Ingrese id...', 
+                    'id': 'id', 
+                    'class': 'form-control', 
                 }
             ),
             'nombre': forms.TextInput(

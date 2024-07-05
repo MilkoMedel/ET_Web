@@ -11,7 +11,7 @@
                 <!-- apartado para ver pedidos -->
                 
                 <!-- apartado para el admin boton -->
-                {% if user.is_staff %} <!-- create superuser-->
+                {% if user.is_staff %} <!-- create superuser -->
                 {% url 'crud' as crud_url %}
                 <li class="nav-item">
                     <a
