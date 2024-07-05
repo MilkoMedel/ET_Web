@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 from web.forms import SignUpForm
 from web.models import Registro_cliente
 from .forms import ProductosForm
@@ -75,6 +76,16 @@ def crud(request):
         'producto': producto 
     }
     return render(request, 'producto/crud.html', ctx)       # cambia a la lista de productos para mod,add,del
+
+def products(request): # de la tienda
+    products = Producto.objects.all().order_by('id')
+    paginator = Paginator(products, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    ctx = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'cart/shop.html', ctx)
 
 @staff_member_required
 def producto_add(request):

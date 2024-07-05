@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms  import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Genero,Producto
+from .models import Genero,Producto,Registro_cliente,Categoria
 
 class SignUpForm(UserCreationForm):
     genero      = forms.ModelChoiceField(Genero.objects.all(),required=True,label="Genero")
