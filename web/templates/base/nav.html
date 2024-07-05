@@ -8,6 +8,17 @@
         </label>
         <nav class="navbar">
             <ul>
+                <!-- apartado para ver pedidos -->
+                 
+                <!-- apartado para el admin boton -->
+                {% if user.is_staff %} <!-- create superuser-->
+                {% url 'crud' as crud_url %}
+                <li class="nav-item">
+                    <a
+                    class="nav-link {% if request.path == crud_url %}active{% endif %}"
+                    href="{{ crud_url }}">Administrar Producto</a>
+                </li>
+                {% endif %} 
                 {% url 'index' as index_url %}
                 <li><a class="nav-link {% if request.path == index_url %}active{% endif %}"
                     href="{{ index_url }}">Inicio</a></li>
