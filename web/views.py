@@ -71,9 +71,9 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})    # inicia sesion.
 
 def crud(request):
-    producto = Producto.objects.all()
+    products = Producto.objects.all()
     ctx = {
-        'producto': producto 
+        'products': products 
     }
     return render(request, 'producto/crud.html', ctx)       # cambia a la lista de productos para mod,add,del
 
