@@ -31,16 +31,7 @@
                     href="{{galeria_url}}">Galeria</a></li>
                 
                 
-                <a class="dropdown-item" href="#">
-                    <form
-                    id="logout-form"
-                    method="post"
-                    action="{% url 'logout' %}"
-                    style="color: white; font-size: medium; text-align: center">
-                    {% csrf_token %}
-                        <a class="nav-link" onclick="this.closest('form').submit();">Cerrar sesión</a>
-                    </form>
-                </a>
+                
                 {% endif %}
                 {% url 'login' as login_url %}    
                 <li><a class="nav-link {% if request.path == login_url %}active{% endif %}"
